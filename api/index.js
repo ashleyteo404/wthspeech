@@ -1,4 +1,9 @@
-module.exports = (req, res) => {
+const microCors = require('micro-cors'); // Import micro-cors package
+
+const cors = microCors(); // Initialize cors
+
+
+module.exports = cors((req, res) => {
     const { method, url } = req;
   
     if (method === 'GET' && url === '/') {
@@ -26,5 +31,5 @@ module.exports = (req, res) => {
     }
   
     res.status(404).send('Not Found');
-  };
+  });
   

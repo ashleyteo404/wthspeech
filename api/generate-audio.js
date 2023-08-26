@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+const microCors = require('micro-cors');
 
 // Configure AWS
 AWS.config.update({
@@ -6,8 +7,9 @@ AWS.config.update({
   secretAccessKey: process.env.secretAccessKey,
   region: 'ap-southeast-1'
 });
+const cors = microCors();
 
-module.exports = async (req, res) => {
+module.exports = cors(async (req, res) => {
   const { textInput } = req.body;
 
   const polly = new AWS.Polly();
@@ -28,4 +30,4 @@ module.exports = async (req, res) => {
     console.error(err);
     res.status(500).send('Error generating audio');
   }
-};
+});
