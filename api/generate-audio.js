@@ -7,7 +7,11 @@ AWS.config.update({
   secretAccessKey: process.env.secretAccessKey,
   region: 'ap-southeast-1'
 });
-const cors = microCors();
+// const cors = microCors();
+const cors = microCors({
+    allowMethods: ['GET', 'POST'], // Allow GET and POST requests
+    origin: '*' // Allow requests from any origin
+  });
 
 module.exports = cors(async (req, res) => {
   const { textInput } = req.body;

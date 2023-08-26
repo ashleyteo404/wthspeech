@@ -1,6 +1,10 @@
 const microCors = require('micro-cors'); // Import micro-cors package
 
-const cors = microCors(); // Initialize cors
+// const cors = microCors(); // Initialize cors
+const cors = microCors({
+    allowMethods: ['GET', 'POST'], // Allow GET and POST requests
+    origin: '*' // Allow requests from any origin
+  });
 
 
 module.exports = cors((req, res) => {
